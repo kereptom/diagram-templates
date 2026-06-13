@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matice 2x2 diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b6cf0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#5b6cf0;--c-2:#0e9e8e;--c-3:#f0883a;--c-4:#e0468a;--c-5:#e0468a;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// matrix diagram</div>
+  <h1>Matice 2x2</h1>
+  <p class="cap">Priorita podle dopadu a náročnosti.</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><rect x="130" y="50" width="340" height="340" fill="var(--soft)" stroke="var(--rule)"/><line x1="300.0" y1="50" x2="300.0" y2="390" stroke="var(--rule)" stroke-width="1.5"/><line x1="130" y1="220.0" x2="470" y2="220.0" stroke="var(--rule)" stroke-width="1.5"/><text x="300.0" y="36" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="500" fill="var(--muted)">Vysoký dopad</text><text x="300.0" y="414" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="500" fill="var(--muted)">Nízký dopad</text><text x="116" y="220.0" text-anchor="end" font-family="var(--ui)" font-size="13" font-weight="500" fill="var(--muted)">Snadné</text><text x="484" y="220.0" text-anchor="start" font-family="var(--ui)" font-size="13" font-weight="500" fill="var(--muted)">Náročné</text><circle cx="204.8" cy="111.20000000000002" r="11" fill="var(--c-1)"/><text x="204.8" y="93.20000000000002" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Quick win</text><circle cx="395.2" cy="117.99999999999999" r="11" fill="var(--c-2)"/><text x="395.2" y="99.99999999999999" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Velký projekt</text><circle cx="215.0" cy="305.0" r="11" fill="var(--c-3)"/><text x="215.0" y="287.0" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Drobnost</text><circle cx="402.0" cy="315.2" r="11" fill="var(--c-4)"/><text x="402.0" y="297.2" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Zvážit</text></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>
