@@ -224,6 +224,374 @@ RENDER = dict(process=r_process, timeline=r_timeline, funnel=r_funnel, pyramid=r
     matrix=r_matrix, orgchart=r_orgchart, roadmap=r_roadmap, gantt=r_gantt, kpis=r_kpis,
     donut=r_donut, bars=r_bars, venn=r_venn, compare=r_compare, journey=r_journey)
 
+# ====== extra renderers (diagrams 15..50) ==================================
+def _grid(ox, oy, W, H, steps=4):
+    return "".join(f'<line x1="{ox}" y1="{oy+H*g/steps:.0f}" x2="{ox+W}" y2="{oy+H*g/steps:.0f}" stroke="var(--rule)" stroke-width="1"/>' for g in range(steps+1))
+
+def r_line(d):
+    data = d["data"]; ox, oy, W, H = 64, 46, 690, 320; n = len(data)
+    vs = [v for _, v in data]; mx = max(vs); mn = min(min(vs), 0)
+    pts = [(ox+W*i/(n-1), oy+H-H*(v-mn)/((mx-mn) or 1)) for i, (_, v) in enumerate(data)]
+    b = _grid(ox, oy, W, H) + f'<polyline points="{" ".join(f"{x:.0f},{y:.0f}" for x,y in pts)}" fill="none" stroke="var(--c-1)" stroke-width="3.5"/>'
+    for (x, y), (lab, v) in zip(pts, data):
+        b += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="var(--c-1)"/>' + txt(x, oy+H+24, lab, 12, fill="var(--muted)")
+    return svg(b)
+
+def r_area(d):
+    data = d["data"]; ox, oy, W, H = 64, 46, 690, 320; n = len(data)
+    vs = [v for _, v in data]; mx = max(vs)
+    pts = [(ox+W*i/(n-1), oy+H-H*v/mx) for i, (_, v) in enumerate(data)]
+    poly = f"{ox},{oy+H} " + " ".join(f"{x:.0f},{y:.0f}" for x, y in pts) + f" {ox+W},{oy+H}"
+    b = _grid(ox, oy, W, H) + f'<polygon points="{poly}" fill="var(--c-1)" opacity="0.18"/>'
+    b += f'<polyline points="{" ".join(f"{x:.0f},{y:.0f}" for x,y in pts)}" fill="none" stroke="var(--c-1)" stroke-width="3.5"/>'
+    for (x, y), (lab, v) in zip(pts, data): b += txt(x, oy+H+24, lab, 12, fill="var(--muted)")
+    return svg(b)
+
+def r_stackedbars(d):
+    cats = d["cats"]; ser = d["series"]; ox, oy, W, H = 70, 46, 680, 320; n = len(cats)
+    tot = [sum(s["vals"][i] for s in ser) for i in range(n)]; mx = max(tot)
+    bw = W/n*0.6; b = _grid(ox, oy, W, H)
+    for i in range(n):
+        x = ox + W*i/n + (W/n-bw)/2; yy = oy+H
+        for si, s in enumerate(ser):
+            h = H*s["vals"][i]/mx; yy -= h
+            b += f'<rect x="{x:.0f}" y="{yy:.0f}" width="{bw:.0f}" height="{h:.0f}" fill="{PAL[si%len(PAL)]}"/>'
+        b += txt(x+bw/2, oy+H+24, cats[i], 12, fill="var(--muted)")
+    for si, s in enumerate(ser):
+        b += f'<rect x="{ox+si*120}" y="20" width="14" height="14" rx="3" fill="{PAL[si%len(PAL)]}"/>' + txt(ox+si*120+20, 32, s["name"], 12, anchor="start")
+    return svg(b)
+
+def r_groupedbars(d):
+    cats = d["cats"]; ser = d["series"]; ox, oy, W, H = 70, 46, 680, 320; n = len(cats); m = len(ser)
+    mx = max(max(s["vals"]) for s in ser); gw = W/n*0.7; bw = gw/m; b = _grid(ox, oy, W, H)
+    for i in range(n):
+        gx = ox + W*i/n + (W/n-gw)/2
+        for si, s in enumerate(ser):
+            h = H*s["vals"][i]/mx; x = gx+si*bw
+            b += f'<rect x="{x:.0f}" y="{oy+H-h:.0f}" width="{bw-3:.0f}" height="{h:.0f}" rx="3" fill="{PAL[si%len(PAL)]}"/>'
+        b += txt(gx+gw/2, oy+H+24, cats[i], 12, fill="var(--muted)")
+    return svg(b)
+
+def r_hbars(d):
+    data = d["data"]; ox, oy, W, H = 150, 46, 600, 330; n = len(data); mx = max(v for _, v in data); rh = H/n
+    b = ""
+    for i, (lab, v) in enumerate(data):
+        y = oy+i*rh+rh*0.2; w = W*v/mx
+        b += f'<rect x="{ox}" y="{y:.0f}" width="{w:.0f}" height="{rh*0.6:.0f}" rx="5" fill="{PAL[i%len(PAL)]}"/>'
+        b += txt(ox-12, y+rh*0.42, lab, 13, anchor="end") + txt(ox+w+10, y+rh*0.42, str(v), 13, anchor="start", weight="700")
+    return svg(b)
+
+def r_pie(d):
+    sl = d["slices"]; tot = sum(s["value"] for s in sl); cx, cy, r = 250, 230, 160; a = 0; b = ""
+    for i, s in enumerate(sl):
+        ang = 360*s["value"]/tot; b += f'<path d="{arc(cx,cy,r,a,a+ang)}" fill="{PAL[i%len(PAL)]}"/>'; a += ang
+    ly = 110
+    for i, s in enumerate(sl):
+        b += f'<rect x="540" y="{ly-12}" width="16" height="16" rx="4" fill="{PAL[i%len(PAL)]}"/>' + txt(566, ly+1, s["label"], 14, anchor="start") + txt(780, ly+1, f'{round(100*s["value"]/tot)}%', 14, anchor="end", weight="600", fill="var(--muted)")
+        ly += 40
+    return svg(b)
+
+def r_radar(d):
+    ax = d["axes"]; vals = d["values"]; cx, cy, R = 400, 240, 170; n = len(ax); b = ""
+    for ring in (0.33, 0.66, 1.0):
+        pts = " ".join(f"{polar(cx,cy,R*ring,360*i/n)[0]:.0f},{polar(cx,cy,R*ring,360*i/n)[1]:.0f}" for i in range(n))
+        b += f'<polygon points="{pts}" fill="none" stroke="var(--rule)" stroke-width="1"/>'
+    for i in range(n):
+        x, y = polar(cx, cy, R, 360*i/n); b += f'<line x1="{cx}" y1="{cy}" x2="{x:.0f}" y2="{y:.0f}" stroke="var(--rule)"/>'
+        lx, ly = polar(cx, cy, R+24, 360*i/n); b += txt(lx, ly, ax[i], 12, fill="var(--muted)")
+    dp = " ".join(f"{polar(cx,cy,R*vals[i],360*i/n)[0]:.0f},{polar(cx,cy,R*vals[i],360*i/n)[1]:.0f}" for i in range(n))
+    b += f'<polygon points="{dp}" fill="var(--c-1)" opacity="0.3" stroke="var(--c-1)" stroke-width="2.5"/>'
+    return svg(b)
+
+def r_scatter(d):
+    pts = d["points"]; ox, oy, S = 90, 40, 360; b = f'<rect x="{ox}" y="{oy}" width="{S}" height="{S}" fill="var(--soft)"/>' + _grid(ox, oy, S, S)
+    b += "".join(f'<line x1="{ox}" y1="{oy+S*g/4:.0f}" x2="{ox}" y2="{oy+S*g/4:.0f}"/>' for g in range(0))
+    b += f'<line x1="{ox}" y1="{oy}" x2="{ox}" y2="{oy+S}" stroke="var(--rule)"/>'
+    for i, p in enumerate(pts):
+        x = ox+p["x"]*S; y = oy+(1-p["y"])*S; b += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="8" fill="{PAL[i%len(PAL)]}" opacity="0.85"/>'
+    b += txt(ox+S/2, oy+S+30, d.get("xlabel", ""), 13, fill="var(--muted)") + txt(ox-16, oy+S/2, d.get("ylabel", ""), 13, anchor="end", fill="var(--muted)")
+    return svg(b)
+
+def r_bubble(d):
+    pts = d["points"]; ox, oy, S = 110, 40, 360; b = f'<rect x="{ox}" y="{oy}" width="{S}" height="{S}" fill="var(--soft)"/>' + _grid(ox, oy, S, S)
+    for i, p in enumerate(pts):
+        x = ox+p["x"]*S; y = oy+(1-p["y"])*S; r = 14+p["r"]*36
+        b += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.0f}" fill="{PAL[i%len(PAL)]}" opacity="0.55"/>' + txt(x, y+4, p.get("label", ""), 12, weight="600")
+    return svg(b)
+
+def r_heatmap(d):
+    rows = d["rows"]; cols = d["cols"]; cells = d["cells"]; ox, oy = 120, 60; cw = 560/len(cols); ch = 56
+    b = ""
+    for ci, c in enumerate(cols): b += txt(ox+cw*ci+cw/2, oy-12, c, 12, fill="var(--muted)")
+    for ri, r in enumerate(rows):
+        b += txt(ox-12, oy+ch*ri+ch/2+4, r, 13, anchor="end")
+        for ci in range(len(cols)):
+            v = cells[ri][ci]; b += f'<rect x="{ox+cw*ci:.0f}" y="{oy+ch*ri:.0f}" width="{cw-3:.0f}" height="{ch-3:.0f}" rx="5" fill="var(--c-1)" opacity="{0.12+0.82*v:.2f}"/>'
+            b += txt(ox+cw*ci+cw/2, oy+ch*ri+ch/2+4, str(int(v*100)), 12, weight="600", fill="#fff" if v > 0.5 else "var(--ink)")
+    return svg(b)
+
+def r_gauge(d):
+    import math as _m
+    cx, cy, R = 400, 300, 185; v = d["value"]
+    def gp(t):
+        th = _m.pi*(1-t); return (cx+R*_m.cos(th), cy-R*_m.sin(th))
+    l = gp(0); r = gp(1); pv = gp(v)
+    b = f'<path d="M{l[0]:.0f},{l[1]:.0f} A{R},{R} 0 0 1 {r[0]:.0f},{r[1]:.0f}" fill="none" stroke="var(--rule)" stroke-width="28" stroke-linecap="round"/>'
+    b += f'<path d="M{l[0]:.0f},{l[1]:.0f} A{R},{R} 0 0 1 {pv[0]:.0f},{pv[1]:.0f}" fill="none" stroke="var(--c-1)" stroke-width="28" stroke-linecap="round"/>'
+    b += txt(cx, cy-26, d.get("center", f"{int(v*100)}%"), 50, weight="800", fill="var(--c-1)") + txt(cx, cy+6, d.get("label", ""), 16, fill="var(--muted)")
+    return svg(b)
+
+def r_rings(d):
+    its = d["items"]; cx, cy = 250, 230; b = ""
+    for i, it in enumerate(its):
+        R = 160-i*44; circ = 2*3.14159*R; off = circ*(1-it["pct"])
+        b += f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="var(--rule)" stroke-width="20"/>'
+        b += f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="{PAL[i%len(PAL)]}" stroke-width="20" stroke-linecap="round" stroke-dasharray="{circ:.0f}" stroke-dashoffset="{off:.0f}" transform="rotate(-90 {cx} {cy})"/>'
+    ly = 150
+    for i, it in enumerate(its):
+        b += f'<rect x="510" y="{ly-12}" width="16" height="16" rx="4" fill="{PAL[i%len(PAL)]}"/>' + txt(536, ly+1, it["label"], 14, anchor="start") + txt(770, ly+1, f'{int(it["pct"]*100)}%', 14, anchor="end", weight="700", fill="var(--muted)")
+        ly += 42
+    return svg(b)
+
+def r_waterfall(d):
+    st = d["steps"]; ox, oy, W, H = 70, 50, 680, 320; n = len(st)
+    cum = []; run = 0
+    for s in st: cum.append((run, run+s["delta"])); run += s["delta"]
+    mx = max(max(a, b2) for a, b2 in cum); bw = W/n*0.6; b = ""
+    for i, (s, (a, b2)) in enumerate(zip(st, cum)):
+        x = ox+W*i/n+(W/n-bw)/2; y0 = oy+H-H*max(a, b2)/mx; h = H*abs(b2-a)/mx
+        col = PAL[0] if s["delta"] >= 0 else PAL[3]
+        b += f'<rect x="{x:.0f}" y="{y0:.0f}" width="{bw:.0f}" height="{max(h,2):.0f}" rx="3" fill="{col}"/>'
+        b += txt(x+bw/2, oy+H+24, s["label"], 11, fill="var(--muted)") + txt(x+bw/2, y0-8, f'{"+" if s["delta"]>=0 else ""}{s["delta"]}', 12, weight="700")
+    return svg(b)
+
+def r_histogram(d):
+    bins = d["bins"]; ox, oy, W, H = 70, 50, 680, 320; n = len(bins); mx = max(bins); bw = W/n
+    b = _grid(ox, oy, W, H)
+    for i, v in enumerate(bins):
+        h = H*v/mx; b += f'<rect x="{ox+bw*i+1:.0f}" y="{oy+H-h:.0f}" width="{bw-2:.0f}" height="{h:.0f}" fill="var(--c-1)" opacity="0.85"/>'
+    b += txt(ox, oy+H+24, d.get("xlabel", ""), 12, anchor="start", fill="var(--muted)")
+    return svg(b)
+
+def r_slope(d):
+    its = d["items"]; lx, rx, oy, H = 220, 580, 60, 330; b = ""
+    mx = max(max(i["l"], i["r"]) for i in its)
+    b += txt(lx, 36, d.get("left", "Před"), 14, weight="700") + txt(rx, 36, d.get("right", "Po"), 14, weight="700")
+    for i, it in enumerate(its):
+        yl = oy+H-H*it["l"]/mx; yr = oy+H-H*it["r"]/mx; col = PAL[i % len(PAL)]
+        b += f'<line x1="{lx}" y1="{yl:.0f}" x2="{rx}" y2="{yr:.0f}" stroke="{col}" stroke-width="3"/>'
+        b += f'<circle cx="{lx}" cy="{yl:.0f}" r="6" fill="{col}"/><circle cx="{rx}" cy="{yr:.0f}" r="6" fill="{col}"/>'
+        b += txt(lx-14, yl+4, it["label"], 12, anchor="end") + txt(rx+14, yr+4, str(it["r"]), 12, anchor="start", weight="600")
+    return svg(b)
+
+def r_mindmap(d):
+    cx, cy = 400, 230; br = d["branches"]; n = len(br); b = box(cx-90, cy-34, 180, 68, d["center"], "", fill="var(--c-1)", stroke="var(--c-1)", tcol="#fff")
+    import math as _m
+    for i, br1 in enumerate(br):
+        ang = 360*i/n; x, y = polar(cx, cy, 178, ang)
+        b += f'<path d="M{cx},{cy} Q{(cx+x)/2:.0f},{(cy+y)/2-20:.0f} {x:.0f},{y:.0f}" fill="none" stroke="{PAL[i%len(PAL)]}" stroke-width="2.5"/>'
+        b += f'<rect x="{x-66:.0f}" y="{y-22:.0f}" width="132" height="44" rx="10" fill="var(--soft)" stroke="{PAL[i%len(PAL)]}" stroke-width="1.5"/>' + txt(x, y+4, br1, 13, weight="600")
+    return svg(b)
+
+def r_tree(d):
+    root = d["root"]; ch = root.get("children", []); n = len(ch); b = box(330, 26, 140, 50, root["name"], "", fill="var(--c-1)", tcol="#fff", stroke="var(--c-1)")
+    cw = 150; total = n*cw; x0 = 400-total/2
+    b += f'<line x1="400" y1="76" x2="400" y2="100"/>'
+    for i, c in enumerate(ch):
+        cx = x0+i*cw+cw/2; b += f'<line x1="400" y1="100" x2="{cx:.0f}" y2="100"/><line x1="{cx:.0f}" y1="100" x2="{cx:.0f}" y2="130"/>'
+        b += box(cx-62, 130, 124, 46, c["name"], "", fill="var(--paper)")
+        for j, g in enumerate(c.get("children", [])[:3]):
+            gy = 210+j*54; b += f'<line x1="{cx:.0f}" y1="176" x2="{cx:.0f}" y2="{gy+24:.0f}"/>' + box(cx-54, gy, 108, 40, g["name"], "", fill="var(--soft)", tsize=12)
+    return svg(b.replace("<line ", '<line stroke="var(--rule)" stroke-width="1.4" '))
+
+def r_flowchart(d):
+    st = d["steps"]; x = 26; y = 200; bw = 126; b = ""
+    for i, s in enumerate(st):
+        if s.get("decision"):
+            b += f'<polygon points="{x+63},{y-44} {x+138},{y} {x+63},{y+44} {x-12},{y}" fill="var(--soft)" stroke="var(--c-1)" stroke-width="1.5"/>' + txt(x+63, y+4, s["label"], 11, weight="600"); w = 150
+        else:
+            b += box(x, y-34, bw, 68, s["label"], s.get("sub", ""), tsize=14); w = bw
+        if i < len(st)-1:
+            b += f'<path d="M{x+w},{y} h18" stroke="var(--c-1)" stroke-width="2.5" marker-end="url(#fa)"/>'; x += w+18
+    return svg(f'<defs><marker id="fa" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="var(--c-1)"/></marker></defs>{b}')
+
+def r_swimlane(d):
+    lanes = d["lanes"]; steps = d["steps"]; ox, oy = 140, 50; cw = (770-ox)/len(steps); rh = 90; b = ""
+    for ci, s in enumerate(steps): b += txt(ox+cw*ci+cw/2, oy-12, s, 13, weight="600", fill="var(--c-1)")
+    for li, lane in enumerate(lanes):
+        ly = oy+li*rh; b += f'<rect x="{ox}" y="{ly}" width="{cw*len(steps)}" height="{rh}" fill="{"var(--soft)" if li%2 else "var(--paper)"}" stroke="var(--rule)"/>' + txt(ox-12, ly+rh/2, lane["name"], 13, anchor="end", weight="600")
+        for it in lane.get("cells", []):
+            x = ox+cw*it["s"]+10; b += box(x, ly+18, cw-20, rh-36, it["label"], "", fill="var(--paper)", tsize=12, stroke=PAL[li % len(PAL)])
+    return svg(b)
+
+def r_fishbone(d):
+    cx, cy = 720, 230; b = f'<line x1="60" y1="{cy}" x2="{cx}" y2="{cy}" stroke="var(--ink)" stroke-width="3"/>'
+    b += f'<polygon points="{cx},{cy-14} {cx+30},{cy} {cx},{cy+14}" fill="var(--c-1)"/>' + box(cx+34, cy-26, 0, 0, "", "")
+    b += txt(cx+40, cy+4, d["effect"], 14, anchor="start", weight="700", fill="var(--c-1)")
+    cats = d["causes"]; n = len(cats)
+    for i, c in enumerate(cats):
+        up = i % 2 == 0; bx = 140+(i//2)*180; by = cy+(-90 if up else 90)
+        b += f'<line x1="{bx}" y1="{by}" x2="{bx+70}" y2="{cy}" stroke="{PAL[i%len(PAL)]}" stroke-width="2.5"/>'
+        b += txt(bx, by+(-8 if up else 18), c["name"], 13, weight="700", fill=PAL[i % len(PAL)])
+        for j, cause in enumerate(c.get("items", [])[:2]):
+            b += txt(bx+10, by+(-26 if up else 36)+(j*16*(1 if not up else -1)), cause, 11, anchor="start", fill="var(--muted)")
+    return svg(b)
+
+def r_cycle(d):
+    st = d["stages"]; cx, cy, R = 400, 230, 150; n = len(st); b = ""
+    for i in range(n):
+        a0 = 360*i/n; a1 = 360*(i+0.82)/n
+        b += f'<path d="{arc(cx,cy,R+18,a0,a1).replace(f"M{cx},{cy} L","M").split("Z")[0]}" fill="none" stroke="{PAL[i%len(PAL)]}" stroke-width="6"/>'
+        x, y = polar(cx, cy, R, a0+18)
+        b += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="36" fill="{PAL[i%len(PAL)]}"/>' + txt(x, y+5, str(i+1), 22, weight="800", fill="#fff")
+        lx, ly = polar(cx, cy, R+72, a0+18); b += txt(lx, ly, st[i], 13, weight="600")
+    return svg(b)
+
+def r_hubspoke(d):
+    cx, cy = 400, 230; sp = d["spokes"]; n = len(sp); b = ""
+    for i in range(n):
+        x, y = polar(cx, cy, 180, 360*i/n); b += f'<line x1="{cx}" y1="{cy}" x2="{x:.0f}" y2="{y:.0f}" stroke="var(--rule)" stroke-width="2"/>'
+        b += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="40" fill="{PAL[i%len(PAL)]}" opacity="0.9"/>' + txt(x, y+5, sp[i], 12, weight="600", fill="#fff")
+    b += f'<circle cx="{cx}" cy="{cy}" r="52" fill="var(--c-1)"/>' + txt(cx, cy+6, d["hub"], 15, weight="800", fill="#fff")
+    return svg(b)
+
+def r_kanban(d):
+    cols = d["columns"]; ox = 40; cw = (760-ox)/len(cols)-12; b = ""
+    for ci, c in enumerate(cols):
+        x = ox+ci*(cw+18); b += f'<rect x="{x:.0f}" y="40" width="{cw:.0f}" height="380" rx="12" fill="var(--soft)"/>' + txt(x+cw/2, 66, c["name"], 14, weight="700", fill="var(--c-1)")
+        for j, card in enumerate(c["cards"][:4]):
+            cy = 88+j*72; b += f'<rect x="{x+12:.0f}" y="{cy}" width="{cw-24:.0f}" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/>' + txt(x+24, cy+34, card, 12, anchor="start")
+    return svg(b)
+
+def r_stepprogress(d):
+    st = d["steps"]; cur = d.get("current", 1); ox = 70; n = len(st); gap = (660)/(n-1); y = 200; b = f'<line x1="{ox}" y1="{y}" x2="{ox+660}" y2="{y}" stroke="var(--rule)" stroke-width="4"/>'
+    b += f'<line x1="{ox}" y1="{y}" x2="{ox+gap*(cur-1):.0f}" y2="{y}" stroke="var(--c-1)" stroke-width="4"/>'
+    for i, s in enumerate(st):
+        x = ox+gap*i; done = i < cur; col = "var(--c-1)" if done else "var(--rule)"
+        b += f'<circle cx="{x:.0f}" cy="{y}" r="22" fill="{col}"/>' + txt(x, y+6, str(i+1), 18, weight="800", fill="#fff")
+        b += txt(x, y+54, s, 13, weight="600" if done else "400", fill="var(--ink)" if done else "var(--muted)")
+    return svg(b)
+
+def r_calheat(d):
+    weeks = d.get("weeks", 16); cells = d["cells"]; ox, oy, sz = 90, 70, 22; b = ""
+    days = ["Po", "St", "Pá"]
+    for di, dd in enumerate(days): b += txt(ox-12, oy+di*2*sz+sz, dd, 11, anchor="end", fill="var(--muted)")
+    for w in range(weeks):
+        for day in range(7):
+            v = cells[w % len(cells)][day]
+            b += f'<rect x="{ox+w*sz:.0f}" y="{oy+day*sz:.0f}" width="{sz-3}" height="{sz-3}" rx="4" fill="var(--c-1)" opacity="{0.1+0.85*v:.2f}"/>'
+    b += txt(ox, oy+7*sz+24, d.get("label", ""), 12, anchor="start", fill="var(--muted)")
+    return svg(b)
+
+def r_treemap(d):
+    its = d["items"]; tot = sum(i["value"] for i in its); ox, oy, W, H = 50, 50, 700, 360; b = ""; x = ox
+    for i, it in enumerate(its[:4]):
+        w = W*it["value"]/tot; b += f'<rect x="{x:.0f}" y="{oy}" width="{w-4:.0f}" height="{H}" rx="6" fill="{PAL[i%len(PAL)]}" opacity="0.9"/>'
+        b += txt(x+w/2, oy+H/2-6, it["label"], 15, weight="700", fill="#fff") + txt(x+w/2, oy+H/2+18, str(it["value"]), 13, fill="#fff")
+        x += w
+    return svg(b)
+
+def r_pictograph(d):
+    total = d.get("total", 10); filled = d["filled"]; ox, oy = 80, 110; cols = 5; b = ""
+    for i in range(total):
+        r, c = divmod(i, cols); x = ox+c*120; y = oy+r*120; col = "var(--c-1)" if i < filled else "var(--rule)"
+        b += f'<circle cx="{x+30}" cy="{y+24}" r="20" fill="{col}"/><path d="M{x+8},{y+78} a22,26 0 0 1 44,0 z" fill="{col}"/>'
+    b += txt(ox, oy-30, d.get("label", ""), 16, anchor="start", weight="600")
+    return svg(b)
+
+def r_ninebox(d):
+    ox, oy, S = 160, 50, 360; cell = S/3; b = ""
+    hl = d.get("highlight", [1, 1])
+    for r in range(3):
+        for c in range(3):
+            fill = "var(--c-1)" if [c, 2-r] == hl else ("var(--soft)" if (c+r) % 2 else "var(--paper)")
+            b += f'<rect x="{ox+c*cell:.0f}" y="{oy+r*cell:.0f}" width="{cell-2:.0f}" height="{cell-2:.0f}" fill="{fill}" stroke="var(--rule)"/>'
+    labels = d.get("labels", [])
+    for lab in labels: b += txt(lab["x"], lab["y"], lab["t"], 12, weight="600", fill="#fff" if lab.get("on") else "var(--ink)")
+    b += txt(ox+S/2, oy+S+24, d.get("xaxis", ""), 12, fill="var(--muted)") + txt(ox-16, oy+S/2, d.get("yaxis", ""), 12, anchor="end", fill="var(--muted)")
+    return svg(b)
+
+def r_bullet(d):
+    rows = d["rows"]; ox, oy, W = 180, 70, 540; rh = 70; b = ""
+    for i, r in enumerate(rows):
+        y = oy+i*rh; mx = r["max"]
+        b += txt(ox-14, y+14, r["label"], 13, anchor="end", weight="600")
+        b += f'<rect x="{ox}" y="{y}" width="{W}" height="28" rx="5" fill="var(--soft)"/>'
+        b += f'<rect x="{ox}" y="{y+6}" width="{W*r["value"]/mx:.0f}" height="16" rx="4" fill="var(--c-1)"/>'
+        tx = ox+W*r["target"]/mx; b += f'<rect x="{tx-2:.0f}" y="{y-4}" width="4" height="36" fill="var(--ink)"/>'
+    return svg(b)
+
+def r_diverging(d):
+    rows = d["rows"]; cx = 400; ox = 60; W = 320; oy = 60; rh = 60; b = f'<line x1="{cx}" y1="{oy-10}" x2="{cx}" y2="{oy+rh*len(rows)}" stroke="var(--rule)"/>'
+    mx = max(abs(r["value"]) for r in rows)
+    for i, r in enumerate(rows):
+        y = oy+i*rh; v = r["value"]; w = W*abs(v)/mx; col = PAL[0] if v >= 0 else PAL[3]
+        x = cx if v >= 0 else cx-w
+        b += f'<rect x="{x:.0f}" y="{y}" width="{w:.0f}" height="36" rx="5" fill="{col}"/>' + txt(cx+(8 if v < 0 else -8)*(1 if v < 0 else 1), y-6, r["label"], 12, anchor="middle", fill="var(--muted)")
+        b += txt(x+(w+12 if v >= 0 else -12), y+24, f'{"+" if v>=0 else ""}{v}', 12, anchor="start" if v >= 0 else "end", weight="700")
+    return svg(b)
+
+def r_vtimeline(d):
+    its = d["items"]; x = 200; oy = 50; gap = 340/(len(its)); b = f'<line x1="{x}" y1="{oy}" x2="{x}" y2="{oy+gap*len(its)}" stroke="var(--rule)" stroke-width="3"/>'
+    for i, (date, label) in enumerate(its):
+        y = oy+gap*i+gap/2; b += f'<circle cx="{x}" cy="{y:.0f}" r="9" fill="var(--c-1)"/>'
+        b += txt(x-22, y+5, date, 13, anchor="end", weight="600", fill="var(--c-1)") + txt(x+22, y+5, label, 14, anchor="start")
+    return svg(b)
+
+def r_concentric(d):
+    cx, cy = 270, 230; ls = d["layers"]; b = ""
+    for i, lab in enumerate(ls):
+        R = 60+(len(ls)-1-i)*48; b += f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="{PAL[i%len(PAL)]}" opacity="{0.85-i*0.12}"/>'
+    for i, lab in enumerate(ls):
+        R = 60+(len(ls)-1-i)*48; b += txt(cx, cy-R+22, lab, 13, weight="600", fill="#fff")
+    return svg(b)
+
+def r_ladder(d):
+    st = d["steps"]; n = len(st); ox, oy, W, H = 70, 60, 680, 340; sw = W/n; sh = H/n; b = ""
+    for i, s in enumerate(st):
+        x = ox+sw*i; y = oy+H-sh*(i+1); h = sh*(i+1)
+        b += f'<rect x="{x:.0f}" y="{y:.0f}" width="{sw-8:.0f}" height="{h:.0f}" rx="6" fill="{PAL[i%len(PAL)]}" opacity="0.9"/>'
+        b += txt(x+sw/2, y-10, s, 13, weight="600")
+    return svg(b)
+
+def r_segpyramid(d):
+    ly = d["layers"]; n = len(ly); top = 40; H = 360; baseW = 600; cx = 400; b = ""
+    for i, (label, val) in enumerate(ly):
+        y0 = top+i*(H/n); y1 = top+(i+1)*(H/n); w0 = baseW*(i/n); w1 = baseW*((i+1)/n); col = PAL[i % len(PAL)]
+        b += f'<polygon points="{cx-w0/2},{y0} {cx+w0/2},{y0} {cx+w1/2},{y1} {cx-w1/2},{y1}" fill="{col}" opacity="0.92"/>'
+        b += txt(cx, (y0+y1)/2-2, label, 14, weight="600", fill="#fff") + txt(cx, (y0+y1)/2+18, val, 12, fill="#fff")
+    return svg(b)
+
+def r_sankey(d):
+    L = d["left"]; R = d["right"]; flows = d["flows"]; lx, rx = 120, 680; oy = 60; b = ""
+    lh = {}; rh = {}; ly = oy; ry = oy
+    for nm, v in L: lh[nm] = (ly, v); b += f'<rect x="{lx-14}" y="{ly}" width="14" height="{v*4}" fill="var(--c-1)"/>' + txt(lx-22, ly+v*2, nm, 12, anchor="end"); ly += v*4+14
+    for nm, v in R: rh[nm] = (ry, v); b += f'<rect x="{rx}" y="{ry}" width="14" height="{v*4}" fill="var(--c-3)"/>' + txt(rx+22, ry+v*2, nm, 12, anchor="start"); ry += v*4+14
+    loff = {k: 0 for k in lh}; roff = {k: 0 for k in rh}
+    for f in flows:
+        a, bnode, val = f["from"], f["to"], f["v"]; y0 = lh[a][0]+loff[a]; y1 = rh[bnode][0]+roff[bnode]; th = val*4
+        b += f'<path d="M{lx},{y0:.0f} C{(lx+rx)/2},{y0:.0f} {(lx+rx)/2},{y1:.0f} {rx},{y1:.0f}" fill="none" stroke="{PAL[0]}" stroke-width="{th:.0f}" opacity="0.32"/>'
+        loff[a] += th; roff[bnode] += th
+    return svg(b)
+
+def r_multidonut(d):
+    its = d["items"]; n = len(its); gap = 760/n; b = ""
+    for i, it in enumerate(its):
+        cx = 60+gap*i+gap/2-30; cy = 200; R = 80; pct = it["pct"]; circ = 2*3.14159*R
+        b += f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="var(--rule)" stroke-width="18"/>'
+        b += f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="{PAL[i%len(PAL)]}" stroke-width="18" stroke-linecap="round" stroke-dasharray="{circ:.0f}" stroke-dashoffset="{circ*(1-pct):.0f}" transform="rotate(-90 {cx} {cy})"/>'
+        b += txt(cx, cy+6, f'{int(pct*100)}%', 26, weight="800") + txt(cx, cy+R+34, it["label"], 13, weight="600")
+    return svg(b)
+
+RENDER.update(line=r_line, area=r_area, stackedbars=r_stackedbars, groupedbars=r_groupedbars,
+    hbars=r_hbars, pie=r_pie, radar=r_radar, scatter=r_scatter, bubble=r_bubble, heatmap=r_heatmap,
+    gauge=r_gauge, rings=r_rings, waterfall=r_waterfall, histogram=r_histogram, slope=r_slope,
+    mindmap=r_mindmap, tree=r_tree, flowchart=r_flowchart, swimlane=r_swimlane, fishbone=r_fishbone,
+    cycle=r_cycle, hubspoke=r_hubspoke, kanban=r_kanban, stepprogress=r_stepprogress, calheat=r_calheat,
+    treemap=r_treemap, pictograph=r_pictograph, ninebox=r_ninebox, bullet=r_bullet, diverging=r_diverging,
+    vtimeline=r_vtimeline, concentric=r_concentric, ladder=r_ladder, segpyramid=r_segpyramid,
+    sankey=r_sankey, multidonut=r_multidonut)
+
 # ---- items (each = one diagram type with sample data) ---------------------
 from content import ITEMS  # defined separately for readability
 

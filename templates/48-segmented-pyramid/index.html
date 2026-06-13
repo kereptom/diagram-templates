@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segmentová pyramida diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e0468a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#e0468a;--c-2:#c43bd6;--c-3:#7b5bf0;--c-4:#2f6bff;--c-5:#e0468a;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// segpyramid diagram</div>
+  <h1>Segmentová pyramida</h1>
+  <p class="cap">Vrstvy s hodnotami.</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><polygon points="400.0,40.0 400.0,40.0 475.0,130.0 325.0,130.0" fill="var(--c-1)" opacity="0.92"/><text x="400" y="83.0" text-anchor="middle" font-family="var(--ui)" font-size="14" font-weight="600" fill="#fff">VIP</text><text x="400" y="103.0" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="#fff">3 %</text><polygon points="325.0,130.0 475.0,130.0 550.0,220.0 250.0,220.0" fill="var(--c-2)" opacity="0.92"/><text x="400" y="173.0" text-anchor="middle" font-family="var(--ui)" font-size="14" font-weight="600" fill="#fff">Stálí</text><text x="400" y="193.0" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="#fff">18 %</text><polygon points="250.0,220.0 550.0,220.0 625.0,310.0 175.0,310.0" fill="var(--c-3)" opacity="0.92"/><text x="400" y="263.0" text-anchor="middle" font-family="var(--ui)" font-size="14" font-weight="600" fill="#fff">Příležitostní</text><text x="400" y="283.0" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="#fff">34 %</text><polygon points="175.0,310.0 625.0,310.0 700.0,400.0 100.0,400.0" fill="var(--c-4)" opacity="0.92"/><text x="400" y="353.0" text-anchor="middle" font-family="var(--ui)" font-size="14" font-weight="600" fill="#fff">Noví</text><text x="400" y="373.0" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="#fff">45 %</text></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>

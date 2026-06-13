@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Myšlenková mapa diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236d4aff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#6d4aff;--c-2:#0e9e8e;--c-3:#f0883a;--c-4:#e0468a;--c-5:#2f6bff;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// mindmap diagram</div>
+  <h1>Myšlenková mapa</h1>
+  <p class="cap">Centrum a větve.</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><rect x="310" y="196" width="180" height="68" rx="12" fill="var(--c-1)" stroke="var(--c-1)" stroke-width="1.5"/><text x="400.0" y="235.44" text-anchor="middle" font-family="var(--ui)" font-size="16" font-weight="600" fill="#fff">Projekt</text><path d="M400,230 Q400,121 400,52" fill="none" stroke="var(--c-1)" stroke-width="2.5"/><rect x="334" y="30" width="132" height="44" rx="10" fill="var(--soft)" stroke="var(--c-1)" stroke-width="1.5"/><text x="400.0" y="56.0" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Cíle</text><path d="M400,230 Q477,166 554,141" fill="none" stroke="var(--c-2)" stroke-width="2.5"/><rect x="488" y="119" width="132" height="44" rx="10" fill="var(--soft)" stroke="var(--c-2)" stroke-width="1.5"/><text x="554.1525218736301" y="145.0" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Tým</text><path d="M400,230 Q477,254 554,319" fill="none" stroke="var(--c-3)" stroke-width="2.5"/><rect x="488" y="297" width="132" height="44" rx="10" fill="var(--soft)" stroke="var(--c-3)" stroke-width="1.5"/><text x="554.1525218736301" y="323.0" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Rozpočet</text><path d="M400,230 Q400,299 400,408" fill="none" stroke="var(--c-4)" stroke-width="2.5"/><rect x="334" y="386" width="132" height="44" rx="10" fill="var(--soft)" stroke="var(--c-4)" stroke-width="1.5"/><text x="400.0" y="412.0" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Termíny</text><path d="M400,230 Q323,254 246,319" fill="none" stroke="var(--c-5)" stroke-width="2.5"/><rect x="180" y="297" width="132" height="44" rx="10" fill="var(--soft)" stroke="var(--c-5)" stroke-width="1.5"/><text x="245.8474781263699" y="323.0" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Rizika</text><path d="M400,230 Q323,166 246,141" fill="none" stroke="var(--c-1)" stroke-width="2.5"/><rect x="180" y="119" width="132" height="44" rx="10" fill="var(--soft)" stroke="var(--c-1)" stroke-width="1.5"/><text x="245.84747812636994" y="145.0" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Výstupy</text></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanban diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e9e8e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#0e9e8e;--c-2:#5b6cf0;--c-3:#0e9e8e;--c-4:#f0883a;--c-5:#e0468a;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// kanban diagram</div>
+  <h1>Kanban</h1>
+  <p class="cap">Úkoly ve třech sloupcích.</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><rect x="40" y="40" width="228" height="380" rx="12" fill="var(--soft)"/><text x="154.0" y="66" text-anchor="middle" font-family="var(--ui)" font-size="14" font-weight="700" fill="var(--c-1)">K udělání</text><rect x="52" y="88" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="64.0" y="122" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Návrh API</text><rect x="52" y="160" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="64.0" y="194" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Testy</text><rect x="52" y="232" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="64.0" y="266" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Dokumentace</text><rect x="286" y="40" width="228" height="380" rx="12" fill="var(--soft)"/><text x="400.0" y="66" text-anchor="middle" font-family="var(--ui)" font-size="14" font-weight="700" fill="var(--c-1)">Probíhá</text><rect x="298" y="88" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="310.0" y="122" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Onboarding</text><rect x="298" y="160" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="310.0" y="194" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Mobilní app</text><rect x="532" y="40" width="228" height="380" rx="12" fill="var(--soft)"/><text x="646.0" y="66" text-anchor="middle" font-family="var(--ui)" font-size="14" font-weight="700" fill="var(--c-1)">Hotovo</text><rect x="544" y="88" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="556.0" y="122" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Login</text><rect x="544" y="160" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="556.0" y="194" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Dashboard</text><rect x="544" y="232" width="204" height="58" rx="9" fill="var(--paper)" stroke="var(--rule)"/><text x="556.0" y="266" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Export</text></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>

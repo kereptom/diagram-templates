@@ -1,6 +1,6 @@
 # Diagramy a grafy
 
-Knihovna **14 datově řízených SVG diagramů**. Každý typ je samostatný HTML soubor
+Knihovna **50 datově řízených SVG diagramů**. Každý typ je samostatný HTML soubor
 s inline SVG (žádné JS knihovny, žádné závislosti za běhu). Snadno se vloží do
 prezentace, dokumentu nebo webu.
 

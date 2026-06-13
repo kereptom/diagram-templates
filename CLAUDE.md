@@ -1,28 +1,28 @@
 # CLAUDE.md  (read this first, then stop)
 
-Knihovna 14 datově řízených SVG diagramů. Tahle stránka je celý kontext.
+Knihovna 50 datově řízených SVG diagramů a grafů. Tahle stránka je celý kontext.
 
 ## Jak to funguje
 - `templates/NN-slug/index.html` = vygenerované výstupy, NEEDITUJ ručně.
-- Zdroj pravdy: `build/build.py` (renderery diagramů `r_<kind>` + CSS) a
-  `build/content.py` (seznam `ITEMS` = data každého diagramu).
+- Zdroj pravdy: `build/build.py` (renderery `r_<kind>` + CSS) a `build/content.py`
+  (seznam `ITEMS` = data každého diagramu).
 - Build: `python3 build/build.py`. Galerie: `python3 build/gallery.py`.
 
 ## Nejčastější úkol: upravit jeden diagram
 1. Najdi `NN` v tabulce dole (uživatel řekne typ nebo název).
-2. Uprav jeho `dict(...)` v `build/content.py` (hlavně klíč `data`). Tvar dat
-   odpovídá funkci `r_<kind>` v `build/build.py`.
+2. Uprav jeho `dict(...)` v `build/content.py` (klíč `data`). Tvar dat odpovídá
+   funkci `r_<kind>` v `build/build.py`.
 3. Spusť `python3 build/build.py`. Hotovo.
-4. Deploy jen na vyžádání: `vercel deploy --prod --yes` z kořene.
+4. Deploy jen na vyžádání: `vercel deploy --prod --yes`.
    Web: https://29diagramtemplates.vercel.app  GitHub: kereptom/diagram-templates
 
-## Co NEČÍST
-Nechoď do jiných projektů, needituj `templates/` ručně, README čti jen cíleně.
+## Přidat nový typ
+Napiš `r_<kind>(d)` v `build/build.py` (vrací `svg(body)`, helpery `txt, box,
+polar, arc, PAL, _grid`), zaregistruj v `RENDER.update(...)`, přidej položku do
+`ITEMS`. Standardní plátno viewBox 0 0 800 460.
 
-## Pravidla
-- Ukázková (dummy) data. Drž styl, pokud uživatel nechce reálná.
-- NIKDY dlouhou pomlčku (em dash, U+2014). Místo ní `:` `,` `.` nebo závorku.
-- Barvy = CSS proměnné `--c-1` až `--c-5` v každém souboru.
+## Co NEČÍST: jiné projekty, templates/ ručně.
+## Pravidla: ukázková data (dummy); nikdy em dash (U+2014); barvy = proměnné --c-1..5.
 
 ## Index (NN -> slug -> typ)
 
@@ -42,3 +42,39 @@ Nechoď do jiných projektů, needituj `templates/` ručně, README čti jen cí
 | 12 | `12-venn` | Vennův diagram | venn |
 | 13 | `13-comparison` | Srovnávací tabulka | compare |
 | 14 | `14-journey-map` | Mapa cesty | journey |
+| 15 | `15-line-chart` | Spojnicový graf | line |
+| 16 | `16-area-chart` | Plošný graf | area |
+| 17 | `17-stacked-bars` | Skládané sloupce | stackedbars |
+| 18 | `18-grouped-bars` | Seskupené sloupce | groupedbars |
+| 19 | `19-horizontal-bars` | Vodorovné sloupce | hbars |
+| 20 | `20-pie` | Koláčový graf | pie |
+| 21 | `21-radar` | Paprskový graf | radar |
+| 22 | `22-scatter` | Bodový graf | scatter |
+| 23 | `23-bubble` | Bublinový graf | bubble |
+| 24 | `24-heatmap` | Teplotní mapa | heatmap |
+| 25 | `25-gauge` | Měřidlo | gauge |
+| 26 | `26-progress-rings` | Kruhové ukazatele | rings |
+| 27 | `27-waterfall` | Vodopádový graf | waterfall |
+| 28 | `28-histogram` | Histogram | histogram |
+| 29 | `29-slope-chart` | Sklonový graf | slope |
+| 30 | `30-mindmap` | Myšlenková mapa | mindmap |
+| 31 | `31-tree` | Stromový diagram | tree |
+| 32 | `32-flowchart` | Vývojový diagram | flowchart |
+| 33 | `33-swimlane` | Plavecké dráhy | swimlane |
+| 34 | `34-fishbone` | Diagram příčin | fishbone |
+| 35 | `35-cycle` | Cyklus | cycle |
+| 36 | `36-hub-spoke` | Hub a paprsky | hubspoke |
+| 37 | `37-kanban` | Kanban | kanban |
+| 38 | `38-step-progress` | Kroky postupu | stepprogress |
+| 39 | `39-calendar-heatmap` | Kalendářová mapa | calheat |
+| 40 | `40-treemap` | Stromová mapa | treemap |
+| 41 | `41-pictograph` | Piktograf | pictograph |
+| 42 | `42-nine-box` | Devítipolí | ninebox |
+| 43 | `43-bullet-chart` | Terčový graf | bullet |
+| 44 | `44-diverging-bars` | Rozbíhavé sloupce | diverging |
+| 45 | `45-vertical-timeline` | Svislá osa | vtimeline |
+| 46 | `46-concentric` | Soustředné kruhy | concentric |
+| 47 | `47-ladder` | Žebřík | ladder |
+| 48 | `48-segmented-pyramid` | Segmentová pyramida | segpyramid |
+| 49 | `49-sankey` | Sankeyův diagram | sankey |
+| 50 | `50-multi-donut` | Více prstenců | multidonut |

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyklus diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236d4aff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#6d4aff;--c-2:#0e9e8e;--c-3:#f0883a;--c-4:#2f6bff;--c-5:#e0468a;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// cycle diagram</div>
+  <h1>Cyklus</h1>
+  <p class="cap">Opakující se proces (PDCA).</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><path d="M400.0,62.0 A168,168 0 0 1 561.3,183.1 " fill="none" stroke="var(--c-1)" stroke-width="6"/><circle cx="446" cy="87" r="36" fill="var(--c-1)"/><text x="446.3525491562421" y="92.34152255572698" text-anchor="middle" font-family="var(--ui)" font-size="22" font-weight="800" fill="#fff">1</text><text x="468.60177275123834" y="18.86545338247592" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Plánuj</text><path d="M568.0,230.0 A168,168 0 0 1 446.9,391.3 " fill="none" stroke="var(--c-2)" stroke-width="6"/><circle cx="543" cy="276" r="36" fill="var(--c-2)"/><text x="542.658477444273" y="281.3525491562421" text-anchor="middle" font-family="var(--ui)" font-size="22" font-weight="800" fill="#fff">2</text><text x="611.134546617524" y="298.60177275123834" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Udělej</text><path d="M400.0,398.0 A168,168 0 0 1 238.7,276.9 " fill="none" stroke="var(--c-3)" stroke-width="6"/><circle cx="354" cy="373" r="36" fill="var(--c-3)"/><text x="353.6474508437579" y="377.65847744427305" text-anchor="middle" font-family="var(--ui)" font-size="22" font-weight="800" fill="#fff">3</text><text x="331.3982272487617" y="441.1345466175241" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Zkontroluj</text><path d="M232.0,230.0 A168,168 0 0 1 353.1,68.7 " fill="none" stroke="var(--c-4)" stroke-width="6"/><circle cx="257" cy="184" r="36" fill="var(--c-4)"/><text x="257.34152255572695" y="188.6474508437579" text-anchor="middle" font-family="var(--ui)" font-size="22" font-weight="800" fill="#fff">4</text><text x="188.8654533824759" y="161.3982272487617" text-anchor="middle" font-family="var(--ui)" font-size="13" font-weight="600" fill="var(--ink)">Zlepši</text></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>
