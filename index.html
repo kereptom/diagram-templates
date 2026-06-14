@@ -36,10 +36,10 @@ body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSys
 footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);font-size:12.5px;text-align:center}
 </style></head><body>
 <div class="nav"><div class="in"><div class="brand"><span class="logo"><i style="background:#5b6cf0"></i><i style="background:#0e9e8e"></i><i style="background:#f0883a"></i><i style="background:#e0468a"></i></span> Diagramy a grafy</div><a href="#how">Jak to použít</a></div></div>
-<div class="wrap"><section class="hero"><h1>Data dovnitř.<br><span class="grad">50 diagramů ven.</span></h1>
+<div class="wrap"><section class="hero"><h1>Data dovnitř.<br><span class="grad">100 diagramů ven.</span></h1>
 <p>Knihovna datově řízených SVG diagramů a grafů. Jeden soubor, žádné knihovny, snadno vložitelné.</p>
 <div class="note">⚠︎ Ukázková (dummy) data. Uprav je v <code>build/content.py</code>.</div>
-<div class="stats"><div><b>50</b>typů</div><div><b>SVG</b>vektorové</div><div><b>0</b>závislostí</div><div><b>1</b>soubor = diagram</div></div></section>
+<div class="stats"><div><b>100</b>typů</div><div><b>SVG</b>vektorové</div><div><b>0</b>závislostí</div><div><b>1</b>soubor = diagram</div></div></section>
 <div class="grid">
       <a class="card" href="templates/01-process-flow/index.html">
         <div class="thumb"><img src="gallery/shots/01.png" alt="Procesní tok" loading="lazy"></div>
@@ -241,6 +241,206 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
         <div class="thumb"><img src="gallery/shots/50.png" alt="Více prstenců" loading="lazy"></div>
         <div class="meta"><div class="name">Více prstenců</div><div class="cap">Sada ukazatelů.</div>
           <div class="tags"><span>multidonut</span></div></div></a>
+      <a class="card" href="templates/51-stacked-area/index.html">
+        <div class="thumb"><img src="gallery/shots/51.png" alt="Skládaný plošný graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Skládaný plošný graf</div><div class="cap">Vrstvené řady v čase.</div>
+          <div class="tags"><span>stackarea</span></div></div></a>
+      <a class="card" href="templates/52-lollipop/index.html">
+        <div class="thumb"><img src="gallery/shots/52.png" alt="Lízátkový graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Lízátkový graf</div><div class="cap">Hodnoty jako lízátka.</div>
+          <div class="tags"><span>lollipop</span></div></div></a>
+      <a class="card" href="templates/53-dumbbell/index.html">
+        <div class="thumb"><img src="gallery/shots/53.png" alt="Činkový graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Činkový graf</div><div class="cap">Změna mezi dvěma stavy.</div>
+          <div class="tags"><span>dumbbell</span></div></div></a>
+      <a class="card" href="templates/54-spline/index.html">
+        <div class="thumb"><img src="gallery/shots/54.png" alt="Hladká křivka" loading="lazy"></div>
+        <div class="meta"><div class="name">Hladká křivka</div><div class="cap">Plynulý trend.</div>
+          <div class="tags"><span>spline</span></div></div></a>
+      <a class="card" href="templates/55-rose-chart/index.html">
+        <div class="thumb"><img src="gallery/shots/55.png" alt="Růžicový graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Růžicový graf</div><div class="cap">Polární výseče (Nightingale).</div>
+          <div class="tags"><span>rose</span></div></div></a>
+      <a class="card" href="templates/56-ring-gauge/index.html">
+        <div class="thumb"><img src="gallery/shots/56.png" alt="Prstencové měřidlo" loading="lazy"></div>
+        <div class="meta"><div class="name">Prstencové měřidlo</div><div class="cap">Plnění cíle.</div>
+          <div class="tags"><span>ringgauge</span></div></div></a>
+      <a class="card" href="templates/57-boxplot/index.html">
+        <div class="thumb"><img src="gallery/shots/57.png" alt="Krabicový graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Krabicový graf</div><div class="cap">Rozložení a kvartily.</div>
+          <div class="tags"><span>boxplot</span></div></div></a>
+      <a class="card" href="templates/58-candlestick/index.html">
+        <div class="thumb"><img src="gallery/shots/58.png" alt="Svíčkový graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Svíčkový graf</div><div class="cap">Open-high-low-close.</div>
+          <div class="tags"><span>candle</span></div></div></a>
+      <a class="card" href="templates/59-pct-stacked/index.html">
+        <div class="thumb"><img src="gallery/shots/59.png" alt="Procentně skládané" loading="lazy"></div>
+        <div class="meta"><div class="name">Procentně skládané</div><div class="cap">Podíl 100 % v řadě.</div>
+          <div class="tags"><span>pctstacked</span></div></div></a>
+      <a class="card" href="templates/60-grouped-hbars/index.html">
+        <div class="thumb"><img src="gallery/shots/60.png" alt="Seskupené vodorovné" loading="lazy"></div>
+        <div class="meta"><div class="name">Seskupené vodorovné</div><div class="cap">Skupiny vodorovných sloupců.</div>
+          <div class="tags"><span>ghbars</span></div></div></a>
+      <a class="card" href="templates/61-range-bars/index.html">
+        <div class="thumb"><img src="gallery/shots/61.png" alt="Rozsahové sloupce" loading="lazy"></div>
+        <div class="meta"><div class="name">Rozsahové sloupce</div><div class="cap">Min až max v řádku.</div>
+          <div class="tags"><span>rangebars</span></div></div></a>
+      <a class="card" href="templates/62-marimekko/index.html">
+        <div class="thumb"><img src="gallery/shots/62.png" alt="Marimekko" loading="lazy"></div>
+        <div class="meta"><div class="name">Marimekko</div><div class="cap">Šířka i výška nesou hodnotu.</div>
+          <div class="tags"><span>marimekko</span></div></div></a>
+      <a class="card" href="templates/63-pareto/index.html">
+        <div class="thumb"><img src="gallery/shots/63.png" alt="Paretův graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Paretův graf</div><div class="cap">Sloupce a kumulativní křivka.</div>
+          <div class="tags"><span>pareto</span></div></div></a>
+      <a class="card" href="templates/64-combo/index.html">
+        <div class="thumb"><img src="gallery/shots/64.png" alt="Kombinovaný graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Kombinovaný graf</div><div class="cap">Sloupce a linka dohromady.</div>
+          <div class="tags"><span>combo</span></div></div></a>
+      <a class="card" href="templates/65-radial-bars/index.html">
+        <div class="thumb"><img src="gallery/shots/65.png" alt="Radiální sloupce" loading="lazy"></div>
+        <div class="meta"><div class="name">Radiální sloupce</div><div class="cap">Sloupce z centra ven.</div>
+          <div class="tags"><span>radialbars</span></div></div></a>
+      <a class="card" href="templates/66-small-multiples/index.html">
+        <div class="thumb"><img src="gallery/shots/66.png" alt="Malé násobky" loading="lazy"></div>
+        <div class="meta"><div class="name">Malé násobky</div><div class="cap">Mřížka mini-grafů.</div>
+          <div class="tags"><span>smallmult</span></div></div></a>
+      <a class="card" href="templates/67-dot-plot/index.html">
+        <div class="thumb"><img src="gallery/shots/67.png" alt="Tečkový graf" loading="lazy"></div>
+        <div class="meta"><div class="name">Tečkový graf</div><div class="cap">Jedna hodnota na řádek.</div>
+          <div class="tags"><span>dotplot</span></div></div></a>
+      <a class="card" href="templates/68-step-line/index.html">
+        <div class="thumb"><img src="gallery/shots/68.png" alt="Schodová linka" loading="lazy"></div>
+        <div class="meta"><div class="name">Schodová linka</div><div class="cap">Skoková změna hodnot.</div>
+          <div class="tags"><span>stepline</span></div></div></a>
+      <a class="card" href="templates/69-bubble-grid/index.html">
+        <div class="thumb"><img src="gallery/shots/69.png" alt="Bublinová mřížka" loading="lazy"></div>
+        <div class="meta"><div class="name">Bublinová mřížka</div><div class="cap">Velikost bubliny v matici.</div>
+          <div class="tags"><span>bubblegrid</span></div></div></a>
+      <a class="card" href="templates/70-area-compare/index.html">
+        <div class="thumb"><img src="gallery/shots/70.png" alt="Srovnání ploch" loading="lazy"></div>
+        <div class="meta"><div class="name">Srovnání ploch</div><div class="cap">Dvě překryté plochy.</div>
+          <div class="tags"><span>areacompare</span></div></div></a>
+      <a class="card" href="templates/71-sitemap/index.html">
+        <div class="thumb"><img src="gallery/shots/71.png" alt="Mapa webu" loading="lazy"></div>
+        <div class="meta"><div class="name">Mapa webu</div><div class="cap">Struktura stránek.</div>
+          <div class="tags"><span>sitemap</span></div></div></a>
+      <a class="card" href="templates/72-wbs/index.html">
+        <div class="thumb"><img src="gallery/shots/72.png" alt="WBS rozpad" loading="lazy"></div>
+        <div class="meta"><div class="name">WBS rozpad</div><div class="cap">Hierarchický rozpad práce.</div>
+          <div class="tags"><span>wbs</span></div></div></a>
+      <a class="card" href="templates/73-decision-tree/index.html">
+        <div class="thumb"><img src="gallery/shots/73.png" alt="Rozhodovací strom" loading="lazy"></div>
+        <div class="meta"><div class="name">Rozhodovací strom</div><div class="cap">Větvení podle podmínek.</div>
+          <div class="tags"><span>dectree</span></div></div></a>
+      <a class="card" href="templates/74-state-machine/index.html">
+        <div class="thumb"><img src="gallery/shots/74.png" alt="Stavový automat" loading="lazy"></div>
+        <div class="meta"><div class="name">Stavový automat</div><div class="cap">Stavy a přechody.</div>
+          <div class="tags"><span>statemachine</span></div></div></a>
+      <a class="card" href="templates/75-er-diagram/index.html">
+        <div class="thumb"><img src="gallery/shots/75.png" alt="ER diagram" loading="lazy"></div>
+        <div class="meta"><div class="name">ER diagram</div><div class="cap">Entity a vztahy.</div>
+          <div class="tags"><span>er</span></div></div></a>
+      <a class="card" href="templates/76-user-flow/index.html">
+        <div class="thumb"><img src="gallery/shots/76.png" alt="Uživatelský tok" loading="lazy"></div>
+        <div class="meta"><div class="name">Uživatelský tok</div><div class="cap">Cesta s rozhodnutím.</div>
+          <div class="tags"><span>userflow</span></div></div></a>
+      <a class="card" href="templates/77-affinity/index.html">
+        <div class="thumb"><img src="gallery/shots/77.png" alt="Afinitní diagram" loading="lazy"></div>
+        <div class="meta"><div class="name">Afinitní diagram</div><div class="cap">Seskupené poznámky.</div>
+          <div class="tags"><span>affinity</span></div></div></a>
+      <a class="card" href="templates/78-dependency-matrix/index.html">
+        <div class="thumb"><img src="gallery/shots/78.png" alt="Matice závislostí" loading="lazy"></div>
+        <div class="meta"><div class="name">Matice závislostí</div><div class="cap">Kdo závisí na kom (DSM).</div>
+          <div class="tags"><span>depmatrix</span></div></div></a>
+      <a class="card" href="templates/79-arc-diagram/index.html">
+        <div class="thumb"><img src="gallery/shots/79.png" alt="Obloukový diagram" loading="lazy"></div>
+        <div class="meta"><div class="name">Obloukový diagram</div><div class="cap">Vazby na ose.</div>
+          <div class="tags"><span>arcdiagram</span></div></div></a>
+      <a class="card" href="templates/80-chord/index.html">
+        <div class="thumb"><img src="gallery/shots/80.png" alt="Tětivový diagram" loading="lazy"></div>
+        <div class="meta"><div class="name">Tětivový diagram</div><div class="cap">Toky mezi uzly v kruhu.</div>
+          <div class="tags"><span>chord</span></div></div></a>
+      <a class="card" href="templates/81-sunburst/index.html">
+        <div class="thumb"><img src="gallery/shots/81.png" alt="Sluneční záře" loading="lazy"></div>
+        <div class="meta"><div class="name">Sluneční záře</div><div class="cap">Hierarchie v prstencích.</div>
+          <div class="tags"><span>sunburst</span></div></div></a>
+      <a class="card" href="templates/82-icicle/index.html">
+        <div class="thumb"><img src="gallery/shots/82.png" alt="Ledový diagram" loading="lazy"></div>
+        <div class="meta"><div class="name">Ledový diagram</div><div class="cap">Hierarchie v pásech.</div>
+          <div class="tags"><span>icicle</span></div></div></a>
+      <a class="card" href="templates/83-circle-packing/index.html">
+        <div class="thumb"><img src="gallery/shots/83.png" alt="Kruhové balení" loading="lazy"></div>
+        <div class="meta"><div class="name">Kruhové balení</div><div class="cap">Vnořené kruhy podle váhy.</div>
+          <div class="tags"><span>packing</span></div></div></a>
+      <a class="card" href="templates/84-bracket/index.html">
+        <div class="thumb"><img src="gallery/shots/84.png" alt="Turnajový pavouk" loading="lazy"></div>
+        <div class="meta"><div class="name">Turnajový pavouk</div><div class="cap">Vyřazovací schéma.</div>
+          <div class="tags"><span>bracket</span></div></div></a>
+      <a class="card" href="templates/85-process-circular/index.html">
+        <div class="thumb"><img src="gallery/shots/85.png" alt="Kruhový proces" loading="lazy"></div>
+        <div class="meta"><div class="name">Kruhový proces</div><div class="cap">Fáze v kruhu.</div>
+          <div class="tags"><span>proccircular</span></div></div></a>
+      <a class="card" href="templates/86-hierarchy-h/index.html">
+        <div class="thumb"><img src="gallery/shots/86.png" alt="Vodorovná hierarchie" loading="lazy"></div>
+        <div class="meta"><div class="name">Vodorovná hierarchie</div><div class="cap">Strom zleva doprava.</div>
+          <div class="tags"><span>hierh</span></div></div></a>
+      <a class="card" href="templates/87-swot/index.html">
+        <div class="thumb"><img src="gallery/shots/87.png" alt="SWOT analýza" loading="lazy"></div>
+        <div class="meta"><div class="name">SWOT analýza</div><div class="cap">Čtyři kvadranty.</div>
+          <div class="tags"><span>swot</span></div></div></a>
+      <a class="card" href="templates/88-bcg-matrix/index.html">
+        <div class="thumb"><img src="gallery/shots/88.png" alt="BCG matice" loading="lazy"></div>
+        <div class="meta"><div class="name">BCG matice</div><div class="cap">Portfolio produktů.</div>
+          <div class="tags"><span>bcg</span></div></div></a>
+      <a class="card" href="templates/89-value-chain/index.html">
+        <div class="thumb"><img src="gallery/shots/89.png" alt="Hodnotový řetězec" loading="lazy"></div>
+        <div class="meta"><div class="name">Hodnotový řetězec</div><div class="cap">Šipkové fáze (Porter).</div>
+          <div class="tags"><span>valuechain</span></div></div></a>
+      <a class="card" href="templates/90-stage-gate/index.html">
+        <div class="thumb"><img src="gallery/shots/90.png" alt="Stage-Gate" loading="lazy"></div>
+        <div class="meta"><div class="name">Stage-Gate</div><div class="cap">Fáze oddělené branami.</div>
+          <div class="tags"><span>stagegate</span></div></div></a>
+      <a class="card" href="templates/91-milestone-flags/index.html">
+        <div class="thumb"><img src="gallery/shots/91.png" alt="Milníkové vlajky" loading="lazy"></div>
+        <div class="meta"><div class="name">Milníkové vlajky</div><div class="cap">Klíčové body na ose.</div>
+          <div class="tags"><span>mileflags</span></div></div></a>
+      <a class="card" href="templates/92-progress-bars/index.html">
+        <div class="thumb"><img src="gallery/shots/92.png" alt="Pruhy postupu" loading="lazy"></div>
+        <div class="meta"><div class="name">Pruhy postupu</div><div class="cap">Plnění po položkách.</div>
+          <div class="tags"><span>progbars</span></div></div></a>
+      <a class="card" href="templates/93-thermometer/index.html">
+        <div class="thumb"><img src="gallery/shots/93.png" alt="Teploměr" loading="lazy"></div>
+        <div class="meta"><div class="name">Teploměr</div><div class="cap">Plnění sbírky či cíle.</div>
+          <div class="tags"><span>thermometer</span></div></div></a>
+      <a class="card" href="templates/94-curved-timeline/index.html">
+        <div class="thumb"><img src="gallery/shots/94.png" alt="Zakřivená osa" loading="lazy"></div>
+        <div class="meta"><div class="name">Zakřivená osa</div><div class="cap">Milníky na oblouku.</div>
+          <div class="tags"><span>curvedtl</span></div></div></a>
+      <a class="card" href="templates/95-icon-stats/index.html">
+        <div class="thumb"><img src="gallery/shots/95.png" alt="Statistické dlaždice" loading="lazy"></div>
+        <div class="meta"><div class="name">Statistické dlaždice</div><div class="cap">Velká čísla se sparkline.</div>
+          <div class="tags"><span>iconstats</span></div></div></a>
+      <a class="card" href="templates/96-versus/index.html">
+        <div class="thumb"><img src="gallery/shots/96.png" alt="Porovnání proti sobě" loading="lazy"></div>
+        <div class="meta"><div class="name">Porovnání proti sobě</div><div class="cap">Dvě varianty vedle sebe.</div>
+          <div class="tags"><span>versus</span></div></div></a>
+      <a class="card" href="templates/97-quad-bubble/index.html">
+        <div class="thumb"><img src="gallery/shots/97.png" alt="Bublinový kvadrant" loading="lazy"></div>
+        <div class="meta"><div class="name">Bublinový kvadrant</div><div class="cap">Dopad vs náročnost.</div>
+          <div class="tags"><span>quadbubble</span></div></div></a>
+      <a class="card" href="templates/98-funnel-horizontal/index.html">
+        <div class="thumb"><img src="gallery/shots/98.png" alt="Vodorovný trychtýř" loading="lazy"></div>
+        <div class="meta"><div class="name">Vodorovný trychtýř</div><div class="cap">Trychtýř zleva doprava.</div>
+          <div class="tags"><span>funnelh</span></div></div></a>
+      <a class="card" href="templates/99-metric-cards/index.html">
+        <div class="thumb"><img src="gallery/shots/99.png" alt="Metrické karty" loading="lazy"></div>
+        <div class="meta"><div class="name">Metrické karty</div><div class="cap">KPI karty s deltou.</div>
+          <div class="tags"><span>metriccards</span></div></div></a>
+      <a class="card" href="templates/100-ribbon-timeline/index.html">
+        <div class="thumb"><img src="gallery/shots/100.png" alt="Stuhová osa" loading="lazy"></div>
+        <div class="meta"><div class="name">Stuhová osa</div><div class="cap">Milníky střídavě nad a pod.</div>
+          <div class="tags"><span>ribbontl</span></div></div></a>
 </div>
 <section class="how" id="how"><h2>Jak z toho udělat vlastní diagram</h2>
 <p>Najdi typ, uprav jeho data v <code>build/content.py</code> a spusť <code>python3 build/build.py</code>.<br>Vznikne samostatný HTML soubor s inline SVG. Barvy jsou CSS proměnné <code>--c-1..5</code>.</p>

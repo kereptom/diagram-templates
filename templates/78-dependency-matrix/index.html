@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matice závislostí diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6bff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#2f6bff;--c-2:#5b6cf0;--c-3:#0e9e8e;--c-4:#f0883a;--c-5:#e0468a;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--rule-soft:#eef1f6;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// depmatrix diagram</div>
+  <h1>Matice závislostí</h1>
+  <p class="cap">Kdo závisí na kom (DSM).</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><text x="173.0" y="118" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--muted)">1</text><text x="138" y="157.0" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">1. Analýza</text><text x="219.0" y="118" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--muted)">2</text><text x="138" y="203.0" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">2. Design</text><text x="265.0" y="118" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--muted)">3</text><text x="138" y="249.0" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">3. Vývoj</text><text x="311.0" y="118" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--muted)">4</text><text x="138" y="295.0" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">4. Testy</text><text x="357.0" y="118" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--muted)">5</text><text x="138" y="341.0" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">5. Deploy</text><rect x="150" y="130" width="44" height="44" fill="var(--rule-soft)" stroke="var(--rule)"/><rect x="196" y="130" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="242" y="130" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="288" y="130" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="334" y="130" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="150" y="176" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><circle cx="173" cy="199" r="13" fill="var(--c-1)"/><rect x="196" y="176" width="44" height="44" fill="var(--rule-soft)" stroke="var(--rule)"/><rect x="242" y="176" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="288" y="176" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="334" y="176" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="150" y="222" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="196" y="222" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><circle cx="219" cy="245" r="13" fill="var(--c-1)"/><rect x="242" y="222" width="44" height="44" fill="var(--rule-soft)" stroke="var(--rule)"/><rect x="288" y="222" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="334" y="222" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="150" y="268" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="196" y="268" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="242" y="268" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><circle cx="265" cy="291" r="13" fill="var(--c-1)"/><rect x="288" y="268" width="44" height="44" fill="var(--rule-soft)" stroke="var(--rule)"/><rect x="334" y="268" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="150" y="314" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="196" y="314" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><rect x="242" y="314" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><circle cx="265" cy="337" r="13" fill="var(--c-1)"/><rect x="288" y="314" width="44" height="44" fill="var(--paper)" stroke="var(--rule)"/><circle cx="311" cy="337" r="13" fill="var(--c-1)"/><rect x="334" y="314" width="44" height="44" fill="var(--rule-soft)" stroke="var(--rule)"/></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>

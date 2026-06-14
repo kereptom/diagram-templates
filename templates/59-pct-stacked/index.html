@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Procentně skládané diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6bff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#2f6bff;--c-2:#0e9e8e;--c-3:#f0883a;--c-4:#f0883a;--c-5:#e0468a;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--rule-soft:#eef1f6;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// pctstacked diagram</div>
+  <h1>Procentně skládané</h1>
+  <p class="cap">Podíl 100 % v řadě.</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="85" width="240" height="64" fill="var(--c-1)"/><text x="260.0" y="128.0" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">40%</text><rect x="380" y="85" width="300" height="64" fill="var(--c-2)"/><text x="530.0" y="128.0" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">50%</text><rect x="680" y="85" width="60" height="64" fill="var(--c-3)"/><text x="710.0" y="128.0" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">10%</text><text x="128" y="128.0" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">2024</text><rect x="140" y="192" width="180" height="64" fill="var(--c-1)"/><text x="230.0" y="234.66666666666669" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">30%</text><rect x="320" y="192" width="330" height="64" fill="var(--c-2)"/><text x="485.0" y="234.66666666666669" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">55%</text><rect x="650" y="192" width="90" height="64" fill="var(--c-3)"/><text x="695.0" y="234.66666666666669" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">15%</text><text x="128" y="234.66666666666669" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">2025</text><rect x="140" y="299" width="150" height="64" fill="var(--c-1)"/><text x="215.0" y="341.33333333333337" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">25%</text><rect x="290" y="299" width="372" height="64" fill="var(--c-2)"/><text x="476.0" y="341.33333333333337" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">62%</text><rect x="662" y="299" width="78" height="64" fill="var(--c-3)"/><text x="701.0" y="341.33333333333337" text-anchor="middle" font-family="var(--ui)" font-size="11" font-weight="600" fill="#fff">13%</text><text x="128" y="341.33333333333337" text-anchor="end" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">2026</text><rect x="140" y="30" width="13" height="13" rx="3" fill="var(--c-1)"/><text x="159" y="41" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Nové</text><rect x="270" y="30" width="13" height="13" rx="3" fill="var(--c-2)"/><text x="289" y="41" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Stálé</text><rect x="400" y="30" width="13" height="13" rx="3" fill="var(--c-3)"/><text x="419" y="41" text-anchor="start" font-family="var(--ui)" font-size="12" font-weight="500" fill="var(--ink)">Ztracené</text></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>

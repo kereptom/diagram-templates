@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Svíčkový graf diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e9e8e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#0e9e8e;--c-2:#5b6cf0;--c-3:#0e9e8e;--c-4:#e0468a;--c-5:#e0468a;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--rule-soft:#eef1f6;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// candle diagram</div>
+  <h1>Svíčkový graf</h1>
+  <p class="cap">Open-high-low-close.</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><line x1="70" y1="46" x2="750" y2="46" stroke="var(--rule)" stroke-width="1"/><line x1="70" y1="126" x2="750" y2="126" stroke="var(--rule)" stroke-width="1"/><line x1="70" y1="206" x2="750" y2="206" stroke="var(--rule)" stroke-width="1"/><line x1="70" y1="286" x2="750" y2="286" stroke="var(--rule)" stroke-width="1"/><line x1="70" y1="366" x2="750" y2="366" stroke="var(--rule)" stroke-width="1"/><line x1="119" y1="234" x2="119" y2="366" stroke="var(--c-1)" stroke-width="1.5"/><rect x="97" y="253" width="44" height="94" fill="var(--c-1)"/><line x1="216" y1="197" x2="216" y2="291" stroke="var(--c-4)" stroke-width="1.5"/><rect x="194" y="253" width="44" height="19" fill="var(--c-4)"/><line x1="313" y1="159" x2="313" y2="310" stroke="var(--c-1)" stroke-width="1.5"/><rect x="291" y="178" width="44" height="94" fill="var(--c-1)"/><line x1="410" y1="121" x2="410" y2="215" stroke="var(--c-4)" stroke-width="1.5"/><rect x="388" y="178" width="44" height="19" fill="var(--c-4)"/><line x1="507" y1="84" x2="507" y2="234" stroke="var(--c-1)" stroke-width="1.5"/><rect x="485" y="102" width="44" height="94" fill="var(--c-1)"/><line x1="604" y1="46" x2="604" y2="159" stroke="var(--c-4)" stroke-width="1.5"/><rect x="582" y="102" width="44" height="38" fill="var(--c-4)"/><line x1="701" y1="65" x2="701" y2="178" stroke="var(--c-1)" stroke-width="1.5"/><rect x="680" y="74" width="44" height="66" fill="var(--c-1)"/></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>

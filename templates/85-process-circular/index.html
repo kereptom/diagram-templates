@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kruhový proces diagram</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6bff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--c-1:#2f6bff;--c-2:#0e9e8e;--c-3:#f0883a;--c-4:#e0468a;--c-5:#a23bd6;--ink:#1c2230;--muted:#6b7280;--paper:#fff;--soft:#f5f7fb;--rule:#e4e7ee;--rule-soft:#eef1f6;--ui:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f5f8;color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.3);max-width:920px;width:100%;padding:34px 38px 28px}
+.kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-1)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+.cap{color:var(--muted);font-size:15px;margin-bottom:18px}
+.dgm{width:100%;height:auto;display:block}
+.note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+.back{margin-top:24px;font-family:var(--mono);font-size:13px;color:#6b7280;text-decoration:none}
+.back:hover{color:var(--c-1)}
+</style></head>
+<body>
+<div class="frame">
+  <div class="kick">// proccircular diagram</div>
+  <h1>Kruhový proces</h1>
+  <p class="cap">Fáze v kruhu.</p>
+  <svg class="dgm" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"><path d="M408.4,70.2 A160,160 0 0 1 549.4,172.7 L484.0,197.7 A90,90 0 0 0 404.7,140.1 Z" fill="var(--c-1)" opacity="0.85"/><text x="473.47315653655915" y="132.87287570313157" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="600" fill="#fff">Plánuj</text><path d="M554.5,188.6 A160,160 0 0 1 500.7,354.3 L456.6,299.9 A90,90 0 0 0 486.9,206.7 Z" fill="var(--c-2)" opacity="0.85"/><text x="518.8820645368942" y="272.62712429686843" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="600" fill="#fff">Navrhni</text><path d="M487.1,364.2 A160,160 0 0 1 312.9,364.2 L351.0,305.5 A90,90 0 0 0 449.0,305.5 Z" fill="var(--c-3)" opacity="0.85"/><text x="400.0" y="359.0" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="600" fill="#fff">Postav</text><path d="M299.3,354.3 A160,160 0 0 1 245.5,188.6 L313.1,206.7 A90,90 0 0 0 343.4,299.9 Z" fill="var(--c-4)" opacity="0.85"/><text x="281.1179354631058" y="272.62712429686843" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="600" fill="#fff">Otestuj</text><path d="M250.6,172.7 A160,160 0 0 1 391.6,70.2 L395.3,140.1 A90,90 0 0 0 316.0,197.7 Z" fill="var(--c-5)" opacity="0.85"/><text x="326.52684346344085" y="132.87287570313157" text-anchor="middle" font-family="var(--ui)" font-size="12" font-weight="600" fill="#fff">Nasaď</text><circle cx="400" cy="230" r="60" fill="var(--soft)"/><text x="400" y="235" text-anchor="middle" font-family="var(--ui)" font-size="15" font-weight="700" fill="var(--ink)">Cyklus</text></svg>
+  <div class="note">// data-driven SVG &middot; ukázková data (dummy) &middot; uprav data v build/content.py</div>
+</div>
+<a class="back" href="../../index.html">&larr; zpět na galerii</a>
+</body></html>

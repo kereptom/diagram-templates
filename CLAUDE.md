@@ -1,6 +1,6 @@
 # CLAUDE.md  (read this first, then stop)
 
-Knihovna 50 datově řízených SVG diagramů a grafů. Tahle stránka je celý kontext.
+Knihovna 100 datově řízených SVG diagramů a grafů. Tahle stránka je celý kontext.
 
 ## Jak to funguje
 - `templates/NN-slug/index.html` = vygenerované výstupy, NEEDITUJ ručně.
@@ -78,3 +78,53 @@ polar, arc, PAL, _grid`), zaregistruj v `RENDER.update(...)`, přidej položku d
 | 48 | `48-segmented-pyramid` | Segmentová pyramida | segpyramid |
 | 49 | `49-sankey` | Sankeyův diagram | sankey |
 | 50 | `50-multi-donut` | Více prstenců | multidonut |
+| 51 | `51-stacked-area` | Skládaný plošný graf | stackarea |
+| 52 | `52-lollipop` | Lízátkový graf | lollipop |
+| 53 | `53-dumbbell` | Činkový graf | dumbbell |
+| 54 | `54-spline` | Hladká křivka | spline |
+| 55 | `55-rose-chart` | Růžicový graf | rose |
+| 56 | `56-ring-gauge` | Prstencové měřidlo | ringgauge |
+| 57 | `57-boxplot` | Krabicový graf | boxplot |
+| 58 | `58-candlestick` | Svíčkový graf | candle |
+| 59 | `59-pct-stacked` | Procentně skládané | pctstacked |
+| 60 | `60-grouped-hbars` | Seskupené vodorovné | ghbars |
+| 61 | `61-range-bars` | Rozsahové sloupce | rangebars |
+| 62 | `62-marimekko` | Marimekko | marimekko |
+| 63 | `63-pareto` | Paretův graf | pareto |
+| 64 | `64-combo` | Kombinovaný graf | combo |
+| 65 | `65-radial-bars` | Radiální sloupce | radialbars |
+| 66 | `66-small-multiples` | Malé násobky | smallmult |
+| 67 | `67-dot-plot` | Tečkový graf | dotplot |
+| 68 | `68-step-line` | Schodová linka | stepline |
+| 69 | `69-bubble-grid` | Bublinová mřížka | bubblegrid |
+| 70 | `70-area-compare` | Srovnání ploch | areacompare |
+| 71 | `71-sitemap` | Mapa webu | sitemap |
+| 72 | `72-wbs` | WBS rozpad | wbs |
+| 73 | `73-decision-tree` | Rozhodovací strom | dectree |
+| 74 | `74-state-machine` | Stavový automat | statemachine |
+| 75 | `75-er-diagram` | ER diagram | er |
+| 76 | `76-user-flow` | Uživatelský tok | userflow |
+| 77 | `77-affinity` | Afinitní diagram | affinity |
+| 78 | `78-dependency-matrix` | Matice závislostí | depmatrix |
+| 79 | `79-arc-diagram` | Obloukový diagram | arcdiagram |
+| 80 | `80-chord` | Tětivový diagram | chord |
+| 81 | `81-sunburst` | Sluneční záře | sunburst |
+| 82 | `82-icicle` | Ledový diagram | icicle |
+| 83 | `83-circle-packing` | Kruhové balení | packing |
+| 84 | `84-bracket` | Turnajový pavouk | bracket |
+| 85 | `85-process-circular` | Kruhový proces | proccircular |
+| 86 | `86-hierarchy-h` | Vodorovná hierarchie | hierh |
+| 87 | `87-swot` | SWOT analýza | swot |
+| 88 | `88-bcg-matrix` | BCG matice | bcg |
+| 89 | `89-value-chain` | Hodnotový řetězec | valuechain |
+| 90 | `90-stage-gate` | Stage-Gate | stagegate |
+| 91 | `91-milestone-flags` | Milníkové vlajky | mileflags |
+| 92 | `92-progress-bars` | Pruhy postupu | progbars |
+| 93 | `93-thermometer` | Teploměr | thermometer |
+| 94 | `94-curved-timeline` | Zakřivená osa | curvedtl |
+| 95 | `95-icon-stats` | Statistické dlaždice | iconstats |
+| 96 | `96-versus` | Porovnání proti sobě | versus |
+| 97 | `97-quad-bubble` | Bublinový kvadrant | quadbubble |
+| 98 | `98-funnel-horizontal` | Vodorovný trychtýř | funnelh |
+| 99 | `99-metric-cards` | Metrické karty | metriccards |
+| 100 | `100-ribbon-timeline` | Stuhová osa | ribbontl |
